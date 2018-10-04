@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css">
+		
+	</head>
+	<body>
+		<form action="" method="post">
+			<div>
+				<label for="text" class="title">Text</label>
+				<input type="text" id="text" name="text" />
+			</div>
+			<div>
+				<label for="key" class="title">Key</label>s
+				<input type="text" id="key" name="key" />
+			</div>
+			
+			<input value="Crypt" onclick="division_e()" type="button">
+
+			<div>
+				<label for="encrypt" class="title">Encrypt text</label>
+				<input type="text" id="encrypt" name="encrypt" />
+			</div>
+		</form>
+
+		<form action="" method="post">
+			<div>
+				<label for="close_text" class="title">Close text</label>
+				<input type="text" id="close_text" name="close_text" />
+			</div>
+			<div>
+				<label for="close_key" class="title">Key</label>
+				<input type="text" id="close_key" name="close_key" />
+			</div>
+			
+			<input value="decrypt" onclick="division_d()" type="button">
+
+			<div>
+				<label for="decrypt" class="title">Decrypt text</label>
+				<input type="text" id="decrypt" name="decrypt" />
+			</div>
+		</form>
+
+		<script>
+			function division_e() {
+				let string = document.getElementById('text').value;
+				const key = document.getElementById('key').value;
+				let str = "", result = "";
+				for (let i = 0; i < string.length; i += 4) {
+					 str = string.substr(i, 4); 
+					 result += encrypting(str, key);
+				}
+				let a = document.getElementById('encrypt');
+			  	a.value = result;
+			}
+
+			function division_d() {
+				let string = document.getElementById('close_text').value;
+				string = string.split(' ');
+				const key = document.getElementById('close_key').value;
+				let str = "", result = "", i = 0, len = string.length;
+				while (i < len) {
+					str = "";
+					str +=string[i] + " " + string[i + 1] + " " + string[i + 2] + " " + string[i + 3];
+					result += decrypting(str, key);
+					i += 4;
+				}
+				
+				let a = document.getElementById('decrypt');
+				a.value = result.substring(0, result.length - 1);
+			}
+
+			function encrypting(string, key) {
+				
+				let result = "", code;
+				for (let i = 0; i < string.length; i++) {
+				    code = parseInt(string.charCodeAt(i), 10) + parseInt(key, 10);
+				    result += code + ' ';
+				}
+				return result;
+			}
+
+			function decrypting(string, key) {
+				string = string.split(' ');
+				let result = "", symbol = "";
+				for (let i = 0; i < string.length;i++) {
+				    symbol = String.fromCharCode(string[i] - key);
+				    result += symbol;
+				}
+				return result;
+			}
+		</script>
+	</body>
+</html>
