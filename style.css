@@ -1,0 +1,19 @@
+form {
+	padding: 100px 0 0 200px;
+}
+div {
+	border-bottom: 1px solid #efefef;
+	margin: 10px;
+	padding-bottom: 10px;
+	width: 100%;
+}
+input {
+	width: 1000px;
+}
+
+.title {
+	float: left;
+	width: 100px;
+	padding-bottom: 10px;
+	padding-right: 10px;
+}
